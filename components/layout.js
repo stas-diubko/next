@@ -5,6 +5,7 @@ function Layout(props) {
         <style jsx global>{`
           body { 
             margin: 0;
+            background-color: #eeeeee;
           }
       `}</style>
       </div>

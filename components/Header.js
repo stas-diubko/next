@@ -12,7 +12,6 @@ const Header = () => (
     <Link href="/about">
       <span>About</span>
     </Link>
-
     <style jsx>{
         `
         .wrap-header {
@@ -21,7 +20,7 @@ const Header = () => (
             display: flex;
             align-items: center;
             padding: 10px;
-            background-color: lightgreen;
+            background-color: #1d1d1d;
         }
 
         .wrap-header span {
@@ -29,6 +28,7 @@ const Header = () => (
             font-size: 20px;
             font-family: Arial;
             margin-right: 20px;
+            color: #fff;
         }
         `
         }</style>

@@ -3,24 +3,25 @@ import Layout from '../components/layout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 
-const Index = props =>(
+export default function Index (props){
+  let products = props.shows[0].data;
+  return(
     <Layout>
       <div className='home-wrap'>
         <Header />
         <h2>Products</h2>
         <div className='products-wrap'>
           <ul>
-            {props.shows.map(show => (
-              <Link> 
-                <li key={show.id}>
-                    <img src={show.url} alt="img"></img>
+            {products.map(show => (
+              <Link href="/product/[id]" as={`/product/${show._id}`} key={show._id}>
+                <li key={show._id}>
+                    <img src={show.bookImage} alt="img"></img>
                     <h4>{show.title}</h4>
                 </li>
               </Link>
             ))}
           </ul> 
         </div>
-
 
         <style jsx>{
               `
@@ -49,7 +50,7 @@ const Index = props =>(
                 min-height: 300px;
                 width: 250px;
                 margin: 20px;
-                background-color: lightgrey;
+                background-color: #fff;
                 font-family: Arial;
                 color: darkgreen;
                 border-radius: 8px;
@@ -67,15 +68,12 @@ const Index = props =>(
         }</style>
       </div>
     </Layout>
-  );
+  );}
 
 Index.getInitialProps = async function() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/photos?albumId=1');
+  const res = await fetch('http://localhost:3001/books');
   const data = await res.json();
-  
   return {
-    shows: data
+    shows: [data]
   };
 };
-
-export default Index;
